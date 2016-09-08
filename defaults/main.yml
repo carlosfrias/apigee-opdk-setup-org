@@ -1,0 +1,6 @@
+---
+# defaults file for opdk-setup-org
+create_user: "{{ apigee_bin }}/create-user.sh"
+create_org: "{{ apigee_bin }}/create-org.sh"
+create_roles: "{{ apigee_bin }}/create-roles.sh"
+add_env: "{{ apigee_bin }}/add-env.sh"
