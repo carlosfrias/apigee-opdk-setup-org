@@ -46,7 +46,7 @@ Dependencies
 
 This role depends on the following roles:
 
-* opdk-setup-default-settings
+* apigee-opdk-setup-default-settings
 
 Example Playbook
 ----------------
@@ -56,7 +56,7 @@ Example Playbook
       become: yes
       
       roles:
-      - { role: opdk-setup-org }
+      - { role: apigee-opdk-setup-org }
       
 
 License
