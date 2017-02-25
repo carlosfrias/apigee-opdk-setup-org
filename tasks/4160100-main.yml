@@ -4,6 +4,11 @@
     path: '{{ apigee_provision_dir }}'
   register: apigee_provision_status
 
+- name: Ensure apigee-provision is current by uninstalling this first
+  ignore_errors: yes
+  shell: '{{ apigee_service }} apigee-provision install'
+  when: not apigee_provision_status.stat.exists
+
 - name: Apigee provision installation
   shell: '{{ apigee_service }} apigee-provision install'
   when: not apigee_provision_status.stat.exists
