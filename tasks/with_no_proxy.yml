@@ -4,15 +4,15 @@
     path: '{{ apigee_provision_dir }}'
   register: apigee_provision_status
 
-- name: Ensure apigee-provision is current by uninstalling this first
+- name: Ensure apigee-provision is current by uninstalling this first with no proxy
   ignore_errors: yes
   shell: '{{ apigee_service }} apigee-provision install'
   when: not apigee_provision_status.stat.exists
 
-- name: Apigee provision installation
+- name: Apigee provision installation with no proxy
   shell: '{{ apigee_service }} apigee-provision install'
   when: not apigee_provision_status.stat.exists
 
-- name: Apigee organization setup
+- name: Apigee organization setup with no proxy
   shell: '{{ apigee_service }} apigee-provision setup-org -f {{ onboarding_config_file_path }}'
   ignore_errors: yes
