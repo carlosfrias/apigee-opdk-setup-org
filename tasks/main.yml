@@ -22,3 +22,7 @@
 
 - include: with_proxy.yml
   when: http_proxy is defined and https_proxy is defined
+
+- name: Apigee organization setup with no proxy
+  shell: '{{ apigee_service }} apigee-provision setup-org -f {{ onboarding_config_file_path }}'
+  ignore_errors: yes

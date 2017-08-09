@@ -13,6 +13,6 @@
   shell: '{{ apigee_service }} apigee-provision install'
   when: not apigee_provision_status.stat.exists
 
-- name: Apigee organization setup with no proxy
-  shell: '{{ apigee_service }} apigee-provision setup-org -f {{ onboarding_config_file_path }}'
-  ignore_errors: yes
+#- name: Apigee organization setup with no proxy
+#  shell: '{{ apigee_service }} apigee-provision setup-org -f {{ onboarding_config_file_path }}'
+#  ignore_errors: yes
