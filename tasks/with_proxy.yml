@@ -1,0 +1,30 @@
+---
+- name: Obtain apigee-provision status
+  stat:
+    path: '{{ apigee_provision_dir }}'
+  register: apigee_provision_status
+
+- name: Ensure apigee-provision is current by uninstalling this first
+  ignore_errors: yes
+  shell: '{{ apigee_service }} apigee-provision install'
+  when: not apigee_provision_status.stat.exists
+  environment:
+    no_proxy: "{{ no_proxy }}"
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ https_proxy }}"
+
+- name: Apigee provision installation
+  shell: '{{ apigee_service }} apigee-provision install'
+  when: not apigee_provision_status.stat.exists
+  environment:
+    no_proxy: "{{ no_proxy }}"
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ https_proxy }}"
+
+- name: Apigee organization setup
+  shell: '{{ apigee_service }} apigee-provision setup-org -f {{ onboarding_config_file_path }}'
+  ignore_errors: yes
+  environment:
+    no_proxy: "{{ no_proxy }}"
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ https_proxy }}"

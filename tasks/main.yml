@@ -17,8 +17,8 @@
     msg: "Management server is not running"
   when: ms_ext_mgmt_port_status | failed
 
-- include: 4150703-main.yml
-  when: opdk_version | version_compare('4.16.01', '<')
+- include: with_no_proxy.yml
+  when: http_proxy is not defined and https_proxy is not defined
 
-- include: 4160100-main.yml
-  when: opdk_version | version_compare('4.16.01', '>=')
+- include: with_proxy.yml
+  when: http_proxy is defined and https_proxy is defined
