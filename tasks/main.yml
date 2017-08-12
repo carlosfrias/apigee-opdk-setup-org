@@ -1,5 +1,4 @@
 ---
-
 - name: Checking for Management Server Port
   register: ms_ext_mgmt_port_status
   ignore_errors: true
@@ -18,10 +17,10 @@
   when: ms_ext_mgmt_port_status | failed
 
 - include: with_no_proxy.yml
-  when: http_proxy is not defined and https_proxy is not defined
+  when: (https_proxy is not defined or https_proxy | trim == '') and (http_proxy is not defined or http_proxy | trim == '')
 
 - include: with_proxy.yml
-  when: http_proxy is defined and https_proxy is defined
+  when: https_proxy is defined and https_proxy | trim != '' and http_proxy is defined and http_proxy | trim != ''
 
 - name: Apigee organization setup with no proxy
   shell: '{{ apigee_service }} apigee-provision setup-org -f {{ onboarding_config_file_path }}'
