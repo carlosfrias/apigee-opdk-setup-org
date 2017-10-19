@@ -7,7 +7,7 @@
 - name: Ensure apigee-provision is current by uninstalling this first with no proxy
   ignore_errors: yes
   shell: '{{ apigee_service }} apigee-provision uninstall'
-  when: not apigee_provision_status.stat.exists
+  when: apigee_provision_status.stat.exists
 
 - name: Apigee provision installation with no proxy
   shell: '{{ apigee_service }} apigee-provision install'
