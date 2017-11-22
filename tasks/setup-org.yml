@@ -1,0 +1,23 @@
+---
+- name: Set local attributes
+  set_fact:
+    org_name: "{{ tenant.org }}"
+    env_name: "{{ tenant.env }}"
+    new_user: "{{ tenant.new_user }}"
+
+- name: Update Status Attributes
+  tags: ['status']
+  include_role:
+    name: apigee-opdk-setup-status
+
+- name: Create provisioning file
+  tags: ['org-config']
+  include_role:
+    name: apigee-opdk-setup-org-config
+
+- name: Apigee organization setup with proxy
+  shell: '{{ apigee_service }} apigee-provision setup-org -f {{ onboarding_config_file_path }}'
+  environment:
+    no_proxy: "{{ no_proxy }}"
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ https_proxy }}"
