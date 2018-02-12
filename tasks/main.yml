@@ -17,7 +17,7 @@
   when: ms_ext_mgmt_port_status | failed
 
 - name: Apigee provision installation with proxy
-  shell: '{{ apigee_service }} apigee-provision install'
+  shell: '/opt/apigee/apigee-service/bin/apigee-service apigee-provision install'
   environment:
     no_proxy: "{{ no_proxy }}"
     http_proxy: "{{ http_proxy }}"
