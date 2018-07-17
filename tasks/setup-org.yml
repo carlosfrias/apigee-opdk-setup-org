@@ -22,9 +22,6 @@
     http_proxy: "{{ http_proxy }}"
     https_proxy: "{{ https_proxy }}"
 
-- name: Enable analytics
-  shell: '/opt/apigee/apigee-service/bin/apigee-service apigee-provision enable-ax -f {{ onboarding_config_file_path }}'
-  environment:
-    no_proxy: "{{ no_proxy }}"
-    http_proxy: "{{ http_proxy }}"
-    https_proxy: "{{ https_proxy }}"
+- name: Make sure that analytics scope is set
+  import_role:
+    name: apigee-opdk-setup-scopes-add
