@@ -18,9 +18,9 @@
 - name: Apigee organization setup with proxy
   shell: '/opt/apigee/apigee-service/bin/apigee-service apigee-provision setup-org -f {{ onboarding_config_file_path }}'
   environment:
-    no_proxy: "{{ no_proxy }}"
-    http_proxy: "{{ http_proxy }}"
-    https_proxy: "{{ https_proxy }}"
+    no_proxy: "{{ no_proxy | default('') }}"
+    http_proxy: "{{ http_proxy | default('') }}"
+    https_proxy: "{{ https_proxy | default('') }}"
 
 - name: Make sure that analytics scope is set
   import_role:
