@@ -5,11 +5,6 @@
     env_name: "{{ tenant.env }}"
     new_user: "{{ tenant.new_user }}"
 
-- name: Update Status Attributes
-  tags: ['status']
-  include_role:
-    name: apigee-opdk-setup-status
-
 - name: Create provisioning file
   tags: ['org-config']
   include_role:
