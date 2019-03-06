@@ -22,7 +22,7 @@
     no_proxy: "{{ no_proxy | default('') }}"
     http_proxy: "{{ http_proxy | default('') }}"
     https_proxy: "{{ https_proxy | default('') }}"
-  delegate_to: "{{ ansible_ssh_host }}"
+  delegate_to: "{{ private_address | default(ansible_default_ipv4.address) }}"
 
 - name: Iterate over Orgs and Envs
   include_tasks: setup-org.yml
