@@ -10,7 +10,7 @@
   include_role:
     name: apigee-opdk-setup-org-config
 
-- name: Apigee organization setup with proxy
+- name: Apigee organization setup
   shell: '/opt/apigee/apigee-service/bin/apigee-service apigee-provision setup-org -f {{ onboarding_config_file_path }}'
   environment:
     no_proxy: "{{ no_proxy | default('') }}"
