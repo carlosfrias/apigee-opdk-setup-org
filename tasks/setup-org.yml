@@ -18,5 +18,6 @@
     https_proxy: "{{ https_proxy | default('') }}"
 
 - name: Make sure that analytics scope is set
+  tags: ['scopes']
   import_role:
     name: apigee-opdk-setup-scopes-add
